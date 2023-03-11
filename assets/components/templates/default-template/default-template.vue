@@ -4,7 +4,7 @@
         <header>
             <slot name="header" />
         </header>
-        <main>
+        <main class="mx-4">
             <slot name="main" />
         </main>
         <footer>

@@ -1,5 +1,8 @@
 <template>
-    <div class="flex flex-col w-full">
+    <router-link
+        :to="{ name: 'restaurant-details', params: { id: 1 } }"
+        class="flex flex-col w-full"
+    >
         <div class="restaurant-card__cover h-96">
             <img
                 class="w-full h-full rounded-2xl shadow-black shadow-md"
@@ -23,7 +26,7 @@
                 {{ restaurant.ratings_average }}
             </simple-badge>
         </div>
-    </div>
+    </router-link>
 </template>
 <script>
 // Atoms

@@ -1,5 +1,5 @@
 <template>
-    <div class="home-page p-12">
+    <div class="home-page">
         <restaurant-list :restaurant-list="restaurantList" />
     </div>
 </template>

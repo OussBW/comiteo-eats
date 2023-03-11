@@ -1,11 +1,11 @@
 <template>
     <div class="grid grid-cols-2 gap-4">
-        <div
+        <restaurant-card
             v-for="(restaurant, index) in restaurantList"
             :key="index"
-        >
-            <restaurant-card :restaurant="restaurant" />
-        </div>
+            :restaurant="restaurant"
+            has-routing
+        />
     </div>
 </template>
 <script>
