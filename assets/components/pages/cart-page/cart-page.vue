@@ -97,7 +97,13 @@ export default {
                     ...this.cartDishes,
                 },
             };
-            await apiClient.post('/orders', order);
+            await apiClient.post('/orders', order).then(({ data }) => {
+                this.$router.push({ name: 'order-summary', query: { id: data.id } });
+            }).catch((error) => {
+                console.log('submit error!');
+                console.log(error);
+            });
+
             console.log('scuccess!');
         },
     },

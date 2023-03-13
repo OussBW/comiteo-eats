@@ -19,12 +19,14 @@ export default {
         },
         [types.REMOVE_DISH_FROM_CART](state, payload) {
             const existingDish = state.dishes.find((dish) => payload === dish.id);
-            console.log(existingDish);
             if (existingDish.quantity > 1) {
                 existingDish.quantity -= 1;
             } else {
                 state.dishes = state.dishes.filter((dish) => payload !== dish.id);
             }
+        },
+        [types.SET_CART_DISHES](state, payload) {
+            state.dishes = payload;
         },
     },
     getters: {
@@ -37,6 +39,9 @@ export default {
         },
         removeFromCart({ commit }, id) {
             commit(types.REMOVE_DISH_FROM_CART, id);
+        },
+        setCartDishes({ commit }, payload) {
+            commit(types.SET_CART_DISHES, payload);
         },
     },
 };

@@ -41,21 +41,76 @@
                                 </router-link>
                             </p>
                         </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm flex justify-center">
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap text-center">
+                                <router-link :to="{name:'restaurant-details', params: { id: getRestaurantId(id) }}">
+                                    {{ getDishPrice(id) | currencyFormat }}
+                                </router-link>
+                            </p>
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
+                            <span v-if="isSummary">{{ quantity }}</span>
                             <quantity-counter
+                                v-else
                                 :quantity="quantity"
+                                class="max-w-max margin-auto"
                                 @increment="incrementQuantity(id)"
                                 @decrement="decrementQuantity(id)"
                             />
                         </td>
                     </tr>
                 </tbody>
+                <tfoot v-if="isSummary">
+                    <tr class="font-bold text-gray-900 dark:text-white">
+                        <td
+                            class="px-5 py-5 border-b border-gray-200 bg-white text-sm w-2/5"
+                        >
+                            Sous total
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm w-2/5">
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm w-2/5">
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm w-2/5 text-center">
+                            {{ total | currencyFormat }}
+                        </td>
+                    </tr>
+                    <tr class="font-bold text-gray-900 dark:text-white">
+                        <td
+                            class="px-5 py-5 border-b border-gray-200 bg-white text-sm w-2/5"
+                        >
+                            Frais de livraison
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm w-2/5">
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm w-2/5">
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm w-2/5 text-center">
+                            {{ deliveryCost | currencyFormat }}
+                        </td>
+                    </tr>
+                    <tr class="font-bold text-gray-900 dark:text-white">
+                        <td
+                            scope="row"
+                            class="px-5 py-5 border-b border-gray-200 bg-white text-sm w-2/5"
+                        >
+                            Total
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm w-2/5">
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm w-2/5">
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm w-2/5 text-center">
+                            {{ (deliveryCost + total) | currencyFormat }}
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
 </template>
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 // molecules
 import QuantityCounter from '../../molecules/quantity-counter/quantity-counter.vue';
 
@@ -67,11 +122,18 @@ export default {
     props: {
         restaurantList: { type: Array, default: () => [] },
         orderList: { type: Array, default: () => [] },
+        isSummary: { type: Boolean, default: false },
+        deliveryCost: { type: Number, default: 0 },
     },
     data() {
         return {
-            headers: ['Plat', 'Restaurant', 'Quantité'],
+            headers: ['Plat', 'Restaurant', 'Prix', 'Quantité'],
         };
+    },
+    computed: {
+        ...mapGetters({
+            total: 'cart/total',
+        }),
     },
     methods: {
         ...mapActions({
@@ -83,6 +145,9 @@ export default {
         },
         getDishName(id) {
             return this.getDishById(id)?.name;
+        },
+        getDishPrice(id) {
+            return this.getDishById(id)?.price;
         },
         getRestaurantName(id) {
             return this.getRestaurantByDishId(id)?.name;
