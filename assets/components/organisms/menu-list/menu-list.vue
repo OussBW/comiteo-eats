@@ -6,7 +6,8 @@
         <food-card
             v-for="(category, index) in menuCategories"
             :key="'food-card '+index"
-            :category-name="getCategoryLabel(category)"
+            :category-name="category"
+            :category-label="getCategoryLabel(category)"
             :dish-list="getMenuByCategory(category)"
             :restaurant-id="restaurantId"
         />

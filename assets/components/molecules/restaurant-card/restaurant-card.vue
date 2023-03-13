@@ -1,6 +1,6 @@
 <template>
     <router-link
-        :to="{ name: 'restaurant-details', params: { id: 1 } }"
+        :to="{ name: 'restaurant-details', params: { id: restaurant.id } }"
         class="flex flex-col w-full"
     >
         <div class="restaurant-card__cover h-96">

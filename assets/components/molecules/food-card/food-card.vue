@@ -1,7 +1,7 @@
 <template>
     <div class="w-full shadow shadow-black p-4 rounded-xl mb-4">
         <h3 class="text-lg font-semibold capitalize">
-            {{ categoryName }}
+            {{ categoryLabel }}
         </h3>
         <ul class="list-none w-full">
             <li
@@ -44,6 +44,7 @@ export default {
         QuantityCounter,
     },
     props: {
+        categoryLabel: { type: String, required: true },
         categoryName: { type: String, required: true },
         dishList: { type: Array, required: true },
         restaurantId: { type: String, required: true },
@@ -70,16 +71,13 @@ export default {
                 price: dish.price,
             };
             addToCart(dishToAdd);
-            console.log(this.cartDishes);
         },
         decrementQuantity(index) {
             const { getDishId, removeFromCart } = this;
             removeFromCart(getDishId(index));
-            console.log(this.cartDishes);
         },
         getQuantity(index) {
             const id = this.getDishId(index);
-            console.log(id);
             return this.cartDishes.find((cartDish) => id === cartDish.id)?.quantity ?? 0;
         },
         getDishId(index) {

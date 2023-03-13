@@ -12,7 +12,7 @@
         <span class="float-right">
             <base-cta
                 variant="goToCart"
-                href="/cart"
+                :to="{ name: 'cart-page' }"
             >
                 <span v-if="cartTotal">
                     {{ cartTotal | currencyFormat }}

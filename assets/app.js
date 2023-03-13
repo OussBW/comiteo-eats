@@ -2,7 +2,7 @@ import Vue from 'vue';
 import InstantSearch from 'vue-instantsearch';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faCartPlus, faShoppingCart, faTrash, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus, faShoppingCart, faTrash, faPlus, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons';
 import App from './App.vue';
 import router from './router';
 import store from './store';
@@ -11,7 +11,7 @@ import { currencyFormat } from './filters';
 
 import './styles.css';
 
-library.add(faCartPlus, faShoppingCart, faTrash, faPlus, faMinus);
+library.add(faCartPlus, faShoppingCart, faTrash, faPlus, faMinus, faXmark);
 Vue.component('FontAwesomeIcon', FontAwesomeIcon);
 Vue.config.productionTip = false;
 

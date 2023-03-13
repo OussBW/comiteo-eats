@@ -1,6 +1,6 @@
 <template>
     <component
-        :is="htmlTag"
+        :is="component"
         :class="[
             'bg-white text-red-600',
             'hover:bg-gray-100 hover:text-red-900 hover:border-red-900',
@@ -11,7 +11,7 @@
         :disabled="disabled"
         :aria-disabled="disabled"
         :aria-label="ariaLabelValue"
-        :href="href"
+        :to="to"
         @click="$emit('click')"
     >
         <span class="cta-icon">
@@ -27,7 +27,7 @@
 export default {
     name: 'BaseCta',
     props: {
-        href: { type: String, default: null },
+        to: { type: Object, default: null },
         iconClass: { type: String, default: null },
         disabled: { type: Boolean, default: false },
         isBorderless: { type: Boolean, default: false },
@@ -56,8 +56,8 @@ export default {
         };
     },
     computed: {
-        htmlTag() {
-            return this.href ? 'a' : 'button';
+        component() {
+            return this.to ? 'router-link' : 'button';
         },
         ariaLabelValue() {
             return 'aria-label';
