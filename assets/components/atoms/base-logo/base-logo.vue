@@ -1,6 +1,6 @@
 <template>
     <div class="base-logo max-w-max">
-        <h3 class="capitalize font-normal">
+        <h3 class="capitalize font-normal text-red-600">
             {{ logoTitle }}
         </h3>
         <p class="uppercase font-semibold -mt-3">
@@ -23,7 +23,6 @@ export default {
 </script>
 <style scoped>
 .base-logo h3 {
-    color: #e74c3c;
     font-family: 'Open', sans-serif;
     font-weight: 300;
     font-size: 40px;

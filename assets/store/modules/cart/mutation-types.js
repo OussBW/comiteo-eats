@@ -1,0 +1,2 @@
+export const ADD_DISH_TO_CART = 'ADD_DISH_TO_CART';
+export const REMOVE_DISH_FROM_CART = 'REMOVE_DISH_FROM_CART';

@@ -1,10 +1,14 @@
 <template>
     <div class="w-full">
+        <h1 class="text-xl font-bold">
+            {{ menuTitle }}
+        </h1>
         <food-card
             v-for="(category, index) in menuCategories"
             :key="'food-card '+index"
             :category-name="getCategoryLabel(category)"
             :dish-list="getMenuByCategory(category)"
+            :restaurant-id="restaurantId"
         />
     </div>
 </template>
@@ -19,6 +23,7 @@ export default {
     },
     props: {
         menuList: { type: Array, required: true },
+        restaurantId: { type: String, required: true },
     },
     data() {
         return {
@@ -33,6 +38,9 @@ export default {
     computed: {
         menuCategories() {
             return Object.keys(this.categoryLabels);
+        },
+        menuTitle() {
+            return 'Menu';
         },
     },
     methods: {

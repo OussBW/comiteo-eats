@@ -15,10 +15,10 @@
         <div class="text-lg font-semibold uppercase mt-0 mb-6">
             {{ zipAndCity }}
         </div>
-        <h1 class="text-xl font-bold">
-            {{ menuTitle }}
-        </h1>
-        <menu-list :menu-list="dishList" />
+        <menu-list
+            :menu-list="dishList"
+            :restaurant-id="restaurantId"
+        />
     </div>
 </template>
 <script>
@@ -40,6 +40,9 @@ export default {
         restaurantName() {
             return this.restaurant?.name ?? '';
         },
+        restaurantId() {
+            return this.restaurant?.id ?? '';
+        },
         image() {
             return this.restaurant?.cover_picture ?? '';
         },
@@ -55,9 +58,6 @@ export default {
         },
         dishList() {
             return this.restaurant?.dishes?.data ?? [];
-        },
-        menuTitle() {
-            return 'Menu';
         },
     },
     async beforeMount() {
