@@ -56,7 +56,7 @@ Encore
 
 // the line below is added to allow configuring the api endpoint to use either comiteo or mockapi via the script args
 Encore.configureDefinePlugin((options) => {
-    const globalConf = JSON.stringify({ apiEndpoint: process.argv[3].slice(2) || 'mockapi' });
+    const globalConf = JSON.stringify({ apiEndpoint: process.argv[3]?.slice(2) || 'mockapi' });
     options.GLOBAL_CONFIG = globalConf;
 });
 module.exports = Encore.getWebpackConfig();

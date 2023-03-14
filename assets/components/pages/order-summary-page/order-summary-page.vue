@@ -11,7 +11,7 @@
                 <order-list
                     :order-list="cartDishes"
                     :restaurant-list="restaurantList"
-                    :delivery-cost="10"
+                    :delivery-cost="deliveryCost"
                     is-summary
                 />
             </div>
@@ -77,7 +77,7 @@ export default {
             if (!this.orderData) {
                 return null;
             }
-            return this.deliveryMethods.find((method) => method.value === this.orderData.delivery_method)?.eta;
+            return this.deliveryMethod?.eta;
         },
         deliveryTime() {
             if (!this.orderData) {
@@ -87,6 +87,12 @@ export default {
                 .plus({ minutes: this.deliveryDuration })
                 .setLocale('fr')
                 .toLocaleString(DateTime.DATETIME_SHORT);
+        },
+        deliveryMethod() {
+            return this.deliveryMethods.find((method) => method.value === this.orderData.delivery_method);
+        },
+        deliveryCost() {
+            return this.deliveryMethod?.price;
         },
     },
     async beforeMount() {

@@ -18,4 +18,19 @@ npm run build -- --comiteo
 WIP
 
 ## Screenshots
-WIP
+
+Parcours commande complet
+![parcours](./screenshots/comiteo.gif)
+
+Accueil (liste restaurants)
+![accueil](./screenshots/home.jpg)
+
+
+Détails restaurant
+![details restaurant](./screenshots/restaurant.jpg)
+
+Panier
+![mpanier](./screenshots/cart.jpg)
+
+Récap commande
+![commande](./screenshots/order_recap.jpg)

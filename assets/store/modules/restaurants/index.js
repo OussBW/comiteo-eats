@@ -21,7 +21,6 @@ export default {
             await apiClient.get('restaurants').then(({ data }) => {
                 commit(types.SET_RESTAURANTS, data);
             }).catch((error) => {
-                commit(types.SET_RESTAURANTS, []);
                 console.log(error);
             });
         },

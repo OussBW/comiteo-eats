@@ -59,7 +59,10 @@ export default {
         },
     },
     async beforeMount() {
-        await this.fetchRestaurants();
+        if (!this.restaurantList.length) {
+            await this.fetchRestaurants();
+        }
+
         // await apiClient.get('/delivery_methods').then(({ data }) => {
         //     this.deliveryMethods = data;
         // }).catch((error) => {
